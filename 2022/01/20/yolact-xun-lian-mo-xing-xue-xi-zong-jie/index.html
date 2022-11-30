@@ -625,10 +625,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="yolact训练模型学习总结"><a href="#yolact训练模型学习总结" class="headerlink" title="yolact训练模型学习总结"></a>yolact训练模型学习总结</h1><h2 id="一、YOLACT介绍-You-Only-Look-At-CoefficienTs"><a href="#一、YOLACT介绍-You-Only-Look-At-CoefficienTs" class="headerlink" title="一、YOLACT介绍(You Only Look At CoefficienTs)"></a>一、YOLACT介绍(<strong>Y</strong>ou <strong>O</strong>nly <strong>L</strong>ook <strong>A</strong>t <strong>C</strong>oefficien<strong>T</strong>s)</h2><p><img src="/blog/blog/2022/01/20/yolact-xun-lian-mo-xing-xue-xi-zong-jie/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210918183856980-2126594695.png"></p>
+                <h1 id="yolact训练模型学习总结"><a href="#yolact训练模型学习总结" class="headerlink" title="yolact训练模型学习总结"></a>yolact训练模型学习总结</h1><h2 id="一、YOLACT介绍-You-Only-Look-At-CoefficienTs"><a href="#一、YOLACT介绍-You-Only-Look-At-CoefficienTs" class="headerlink" title="一、YOLACT介绍(You Only Look At CoefficienTs)"></a>一、YOLACT介绍(<strong>Y</strong>ou <strong>O</strong>nly <strong>L</strong>ook <strong>A</strong>t <strong>C</strong>oefficien<strong>T</strong>s)</h2><p><img src="/blog/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210918183856980-2126594695.png"></p>
 <h3 id="1-1-简要介绍"><a href="#1-1-简要介绍" class="headerlink" title="1.1 简要介绍"></a>1.1 简要介绍</h3><p>yolact是一种用于实时实例分割的简单、全卷积模型。<br>(A simple, fully convolutional model for real-time instance segmentation. </p>
 <p>论文摘要介绍<strong>Abstract：</strong>我们提出了一个用于实时实例分割的简单全卷积模型，在单个Titan Xp上以33 fps在MS COCO上实现了<strong>29.8 mAP</strong>，这比以前的任何算法都要快得多。此外，我们只在一个GPU上训练后获得此结果。我们通过将实例分割分成两个并行子任务：（1）生成一组原型掩膜（prototype mask）；（2）预测每个实例的掩膜系数（mask coefficients）。然后我们通过将原型与掩模系数线性组合来生成实例掩膜（instance masks）。我们发现因为这个过程不依赖于 repooling，所以这种方法可以产生非常高质量的掩模。此外，我们分析了 the emergent behavior of our prototypes，并表明他们学会以 translation variant manner 定位实例，尽管是完全卷积的。最后，我们还提出了快速NMS（Fast NMS），比标准NMS快12 ms，只有一点点性能损失。</p>
-<p><img src="/blog/blog/2022/01/20/yolact-xun-lian-mo-xing-xue-xi-zong-jie/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919090752129-421635284.png"></p>
+<p><img src="/blog/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919090752129-421635284.png"></p>
 <h3 id="1-2-paper-with-code"><a href="#1-2-paper-with-code" class="headerlink" title="1.2 paper with code"></a>1.2 paper with code</h3><p>下面是官方团队论文和代码(两个白线)：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1904.02689">YOLACT：实时实例分割</a></li>
@@ -819,9 +819,9 @@ python eval.py --trained_model&#x3D;weights&#x2F;yolact_base_54_800000.pth --sco
 <table>
 <thead>
 <tr>
-<th><img src="/blog/blog/2022/01/20/yolact-xun-lian-mo-xing-xue-xi-zong-jie/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919103942949-2256516.png"></th>
-<th><img src="/blog/blog/2022/01/20/yolact-xun-lian-mo-xing-xue-xi-zong-jie/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919103951730-1426578431.png"></th>
-<th><img src="/blog/blog/2022/01/20/yolact-xun-lian-mo-xing-xue-xi-zong-jie/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919103957622-192417666.png"></th>
+<th><img src="/blog/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919103942949-2256516.png"></th>
+<th><img src="/blog/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919103951730-1426578431.png"></th>
+<th><img src="/blog/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919103957622-192417666.png"></th>
 </tr>
 </thead>
 </table>
@@ -943,7 +943,7 @@ python train.py --help<span aria-hidden="true" class="line-numbers-rows"><span><
 <li><p>使用提供的多边形标签( Create Polygons)选项进行标记</p>
 </li>
 <li><p>将为每个标记的图像创建一个 json 文件(与图像同名)</p>
-<p><img src="/blog/blog/2022/01/20/yolact-xun-lian-mo-xing-xue-xi-zong-jie/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919152333156-1308662815.png"></p>
+<p><img src="/blog/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919152333156-1308662815.png"></p>
 </li>
 <li><p>创建一个 label.txt</p>
 <p>例如下面这样形式:</p>
@@ -955,13 +955,13 @@ dog
 cat
 person<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
-<p><img src="/blog/blog/2022/01/20/yolact-xun-lian-mo-xing-xue-xi-zong-jie/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919154125368-721592120.png"></p>
+<p><img src="/blog/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919154125368-721592120.png"></p>
 <ul>
 <li>转换生成coco风格的 json <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">.&#x2F;labelme2coco.py &lt;labelled_data_folder&gt; &lt;out_folder&gt; --labels labels.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 生成的内容如下:<img src="/blog/blog/2022/01/20/yolact-xun-lian-mo-xing-xue-xi-zong-jie/1571518-20210919154227366-1129313568.png" style="zoom:67%;"></li>
 </ul>
-<p> <img src="/blog/blog/2022/01/20/yolact-xun-lian-mo-xing-xue-xi-zong-jie/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919154021879-1532117218.png"></p>
+<p> <img src="/blog/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919154021879-1532117218.png"></p>
 <p>这部分的更多细节可见：<a target="_blank" rel="noopener" href="https://github.com/wkentaro/labelme/tree/master/examples/instance_segmentation">链接</a></p>
 <h5 id="2-3-6-3-配置configs数据集路径与训练参数"><a href="#2-3-6-3-配置configs数据集路径与训练参数" class="headerlink" title="2.3.6.3 配置configs数据集路径与训练参数"></a>2.3.6.3 配置configs数据集路径与训练参数</h5><p>数据集制作好了之后，还不能直接进一步训练，这里还缺了关键的一步，就是在config配置文件中修改对应的参数与指定路径。</p>
 <p>这里主要修改两部分：my_custom_dataset与yolact_im400_custom_cfg<br>具体如下：</p>
@@ -982,7 +982,7 @@ my_custom_dataset <span class="token operator">=</span> dataset_base<span class=
 
 <p>说明：此处的<code>&#39;name&#39;: &#39;my_custom_dataset&#39;</code>是与后面的 <code>&#39;dataset&#39;: my_custom_dataset</code>建立绑定关系的纽带，若设置出错则有可能读不到数据，或是出现其他类型报错等等异常。<br>另外需要说明的是，若需要检测的目标只有一类，也即为单分类时，需要将’class_names’的后面添加’,’作为区分，例如(‘dog’)，否则程序会默认将’d’, ‘o’, ‘g’三个字母作为实例目标分类名称，从而得到的分类和分类数量都是错误的。若为多分类则可以不用加’,’，正常设置即可。</p>
 <p>如下图:</p>
-<p><img src="/blog/blog/2022/01/20/yolact-xun-lian-mo-xing-xue-xi-zong-jie/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919155329345-649948128.png"></p>
+<p><img src="/blog/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919155329345-649948128.png"></p>
 <h6 id="2-3-6-3-2-配置训练设置cfg"><a href="#2-3-6-3-2-配置训练设置cfg" class="headerlink" title="2.3.6.3.2 配置训练设置cfg"></a>2.3.6.3.2 配置训练设置cfg</h6><p>在YOLACT v1.0 CONFIGS下对应的位置加上此段部分，用来建立配置文件与训练的关系。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># TODO base_confid</span>
 yolact_im400_custom_cfg <span class="token operator">=</span> yolact_base_config<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
@@ -1001,7 +1001,7 @@ yolact_im400_custom_cfg <span class="token operator">=</span> yolact_base_config
 
 <p>说明：此处的yolact_im400_custom_cfg即为config设置的可选项，定义后可直接在训练时进行调用。这里需要说明的是，程序中没有提供轮次的修改，可根据最大迭代次数进行计算。比如我的数据集只有2000张左右，批次给的是4，我设置了25000，大概迭代轮次为50轮，可以根据自己数据集数量依次类推设置，lr_steps是学习率衰减区间，也可以根据自己设置的最大迭代次数进行设置。至此，配置也修改完成了。</p>
 <p>如下图：</p>
-<p><img src="/blog/blog/2022/01/20/yolact-xun-lian-mo-xing-xue-xi-zong-jie/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919155757053-1811199327.png"></p>
+<p><img src="/blog/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919155757053-1811199327.png"></p>
 <h6 id="2-3-6-3-3-开始训练"><a href="#2-3-6-3-3-开始训练" class="headerlink" title="2.3.6.3.3 开始训练"></a>2.3.6.3.3 开始训练</h6><p>与config默认设置为yolact_base_config，训练时默认使用</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python train.py --config&#x3D;yolact_base_config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -1010,12 +1010,12 @@ yolact_im400_custom_cfg <span class="token operator">=</span> yolact_base_config
 
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python train.py --config&#x3D;yolact_im400_custom_cfg --batch_size&#x3D;5<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>成功开始训练会出现以下信息：<br><img src="/blog/blog/2022/01/20/yolact-xun-lian-mo-xing-xue-xi-zong-jie/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210922110522079-342846004.png"><br>计算mAP<br><img src="/blog/blog/2022/01/20/yolact-xun-lian-mo-xing-xue-xi-zong-jie/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210922110609088-1054269276.png"></p>
+<p>成功开始训练会出现以下信息：<br><img src="/blog/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210922110522079-342846004.png"><br>计算mAP<br><img src="/blog/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210922110609088-1054269276.png"></p>
 <p>默认迭代10000次会保存一次模型，可以在传参时进行修改。如果训练中断可以使用–resume进行恢复训练：</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python train.py --config&#x3D;yolact_im400_custom_cfg --batch_size 4 --resume<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>训练过程完成后，或者提前打断时，相应地会在./weights目录下根据迭代次数等参数生成对应的权重文件，如下图:</p>
-<p><img src="/blog/blog/2022/01/20/yolact-xun-lian-mo-xing-xue-xi-zong-jie/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919161609089-789737706.png"></p>
+<p><img src="/blog/yolact%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/1571518-20210919161609089-789737706.png"></p>
 <h6 id="2-3-6-3-4-评估训练模型"><a href="#2-3-6-3-4-评估训练模型" class="headerlink" title="2.3.6.3.4 评估训练模型"></a>2.3.6.3.4 评估训练模型</h6><p>得到权重文件后，我们自然是希望评估模型在验证集上的性能及其他表现，那么类似上面的流程，我们可以通过以下命令来继续评估模型数值作为模型过程的参考。</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python eval.py --trained_model&#x3D;weights&#x2F;yolact_im400_19_38_interrupt.pth<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 

@@ -628,7 +628,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="YOLOv3-Detect-Web"><a href="#YOLOv3-Detect-Web" class="headerlink" title="YOLOv3_Detect_Web"></a>YOLOv3_Detect_Web</h1><p>Use Yolov3 detect on Web</p>
-<p><img src="/blog/blog/2022/01/20/yolov3/yolov3/1571518-20211229095207661-1020206979.png"></p>
+<p><img src="/blog/yolov3/1571518-20211229095207661-1020206979.png"></p>
 <p>使用 YOLOv3（PyTorch 和 Django 实现）的对象检测应用程序。<br>网页和 REST API由Django Web框架实现。</p>
 <h1 id="1-Introduction-介绍"><a href="#1-Introduction-介绍" class="headerlink" title="1. Introduction 介绍"></a>1. Introduction 介绍</h1><hr>
 <h2 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h2><p>这是一个使用 YOLOv3 提供对象检测并生成 REST API 的 Web 应用程序。<br>它是使用 Django 框架和 PyTorch（用于 YOLO 模型）实现的。<br>这里开发了接受图像作为请求的 Django API，API 的响应是 JSON 对象。<br>输入图像被转换为 float32 类型的 NumPy 数组并传递给 YOLOv3 对象检测模型。<br>该模型对图像执行对象检测，并生成一个 JSON 对象，其中包含所有对象的名称及其在图像中各自的置信度。</p>
@@ -705,26 +705,26 @@
 <ul>
 <li><strong>step-7</strong>..执行上述代码后，您将看到如下内容：</li>
 </ul>
-<p><img src="/blog/blog/2022/01/20/yolov3/yolov3/1571518-20211229102043283-1298501310.png"></p>
+<p><img src="/blog/yolov3/1571518-20211229102043283-1298501310.png"></p>
 <ul>
 <li><p>**step-8.**点击链接。这会将您定向到 Web 浏览器。</p>
-<p><img src="/blog/blog/2022/01/20/yolov3/yolov3/1571518-20211229102544422-65710418.png"></p>
+<p><img src="/blog/yolov3/1571518-20211229102544422-65710418.png"></p>
 </li>
 <li><p><strong>step-9</strong>.通过拖放或浏览模式选择图像。</p>
-<p><img src="/blog/blog/2022/01/20/yolov3/yolov3/1571518-20211229102538414-994383395.png"></p>
+<p><img src="/blog/yolov3/1571518-20211229102538414-994383395.png"></p>
 </li>
 <li><p><strong>setp-10</strong>:上传图片</p>
 </li>
 </ul>
-<p><img src="/blog/blog/2022/01/20/yolov3/yolov3/1571518-20211229111240890-1808341010.png"><br><img src="/blog/blog/2022/01/20/yolov3/yolov3/1571518-20211229112155005-1239105137.png"></p>
+<p><img src="/blog/yolov3/1571518-20211229111240890-1808341010.png"><br><img src="/blog/yolov3/1571518-20211229112155005-1239105137.png"></p>
 <ul>
 <li><p><strong>step-11</strong>: 点击DEDECT-OBJECT，进行检测图片，这时会将结果解析为json并显示出来。<br>Django Web-app 的输入是一个图像。此输入图像被转换为 float32 类型的 NumPy 数组并传递给 YOLOv3 模型。<br>该模型对图像执行对象检测，并生成一个 JSON 对象，其中包含所有对象的名称及其在图像中各自的频率。</p>
-<p><img src="/blog/blog/2022/01/20/yolov3/yolov3/1571518-20211229111348163-1486954962.png"><br>表单响应是 JSON 对象。此 JSON 对象如上所示显示。</p>
+<p><img src="/blog/yolov3/1571518-20211229111348163-1486954962.png"><br>表单响应是 JSON 对象。此 JSON 对象如上所示显示。</p>
 </li>
 <li><p><strong>step-12:</strong> 单击“Show Predictions”显示检测结果,查看带有边界框的图像。</p>
 </li>
 </ul>
-<p><img src="/blog/blog/2022/01/20/yolov3/yolov3/1571518-20211229111605379-1714549773.png"></p>
+<p><img src="/blog/yolov3/1571518-20211229111605379-1714549773.png"></p>
 <ul>
 <li><strong>step-13:</strong> 要尝试其他图像，请单击”Choose a New File”</li>
 </ul>
@@ -733,14 +733,14 @@
 <li><p>按照上面提到的前 6 个步骤进行操作。</p>
 </li>
 <li><p>确保服务器正常运行</p>
-<p><img src="/blog/blog/2022/01/20/yolov3/yolov3/1571518-20211229112728941-539819044.png"></p>
+<p><img src="/blog/yolov3/1571518-20211229112728941-539819044.png"></p>
 </li>
 <li><p>打开 POSTMAN 并选择 POST 选项。输入上面显示的服务器链接并将 /object_detection/api_request/ 附加到它。</p>
 </li>
 <li><p>点击body,输入key value作为”image”，选择图片文件点击“Send”进行发送</p>
 </li>
 <li><p>输入图像被转换为 float32 类型的 NumPy 数组并传递给 YOLOv3 模型。该模型对图像执行对象检测，并生成一个 JSON 对象，其中包含所有对象的名称及其在图像中各自的频率。</p>
-<p><img src="/blog/blog/2022/01/20/yolov3/yolov3/1571518-20211229115830026-325581645.png"></p>
+<p><img src="/blog/yolov3/1571518-20211229115830026-325581645.png"></p>
 </li>
 <li><p>HttpResponse 是 JSON 对象。其中此 JSON 对象如上所示显示。</p>
 </li>

@@ -627,17 +627,17 @@
             <div id="articleContent">
                 <h2 id="DeepLabv3-训练模型学习总结"><a href="#DeepLabv3-训练模型学习总结" class="headerlink" title="DeepLabv3+训练模型学习总结"></a>DeepLabv3+训练模型学习总结</h2><hr>
 <h2 id="一、DeepLabs3-介绍"><a href="#一、DeepLabs3-介绍" class="headerlink" title="一、DeepLabs3+介绍"></a>一、DeepLabs3+介绍</h2><p><strong>DeepLabv3</strong>是一种语义分割架构，它在<a target="_blank" rel="noopener" href="https://paperswithcode.com/method/deeplabv2">DeepLabv2</a>的基础上进行了一些修改。为了处理在多个尺度上分割对象的问题，设计了在级联或并行中采用多孔<a target="_blank" rel="noopener" href="https://paperswithcode.com/method/convolution">卷积</a>的模块，通过采用多个多孔速率来捕获多尺度上下文。此外，来自 DeepLabv2 的 Atrous <a target="_blank" rel="noopener" href="https://paperswithcode.com/method/spatial-pyramid-pooling">Spatial Pyramid Pooling</a>模块增加了编码全局上下文的图像级特征，并进一步提高了性能。</p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125090542511-130591046.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125090542511-130591046.png"></p>
 <p>ASSP 模块的变化是作者在模型的最后一个特征图上应用<a target="_blank" rel="noopener" href="https://paperswithcode.com/method/global-average-pooling">全局平均池</a>化，将生成的图像级特征馈送到具有 256 个滤波器（和<a target="_blank" rel="noopener" href="https://paperswithcode.com/method/batch-normalization">批量归一化</a>）的 1×1 卷积，然后对模型进行双线性上采样特征到所需的空间维度。最后，改进的<a target="_blank" rel="noopener" href="https://paperswithcode.com/method/aspp">ASPP</a>由 (a) 一个 1×1 卷积和三个 3×3 卷积组成，当输出步幅 = 16 时，速率 = (6, 12, 18)（均具有 256 个滤波器和批量归一化），以及（ b) 图像级特征。</p>
 <p>另一个有趣的区别是不再需要来自 DeepLabv2 的 DenseCRF 后处理。</p>
 <hr>
 <h2 id="二、DeepLabv3-图像语义分割原理"><a href="#二、DeepLabv3-图像语义分割原理" class="headerlink" title="二、DeepLabv3+图像语义分割原理"></a>二、DeepLabv3+图像语义分割原理</h2><h3 id="2-1-图像分割任务及常用数据集"><a href="#2-1-图像分割任务及常用数据集" class="headerlink" title="2.1 图像分割任务及常用数据集"></a>2.1 图像分割任务及常用数据集</h3><h4 id="2-1-1-图像分割任务"><a href="#2-1-1-图像分割任务" class="headerlink" title="2.1.1 图像分割任务"></a>2.1.1 图像分割任务</h4><p><strong>图像分割</strong>（image segmentation）：根据某些规则将图片分成若干个特定的、具有独特性质的区域，并抽取出感兴趣目标。<br>• 目前图像分割任务发展出了以下几个子领域：<br>➢ <strong>语义分割</strong>（semantic segmentation）<br>➢ <strong>实例分割</strong>（instance segmentation）<br>➢ 以及刚兴起的新领域：<strong>全景分割</strong>（panoptic segmentation）</p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125090607648-1150465116.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125090607648-1150465116.png"></p>
 <p>在这里DeepLabv3+就属于一种语义分割的架构模型，<br>语义分割从任务上来看，要实现的最终目标是：<br>从像素层次来识别图像，也即为图像中的每个像素指定类别标记。</p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091005440-91589559.png"></p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091024828-1830485005.jpg"></p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091048201-1926400491.png"></p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091120612-1419294283.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091005440-91589559.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091024828-1830485005.jpg"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091048201-1926400491.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091120612-1419294283.png"></p>
 <h4 id="2-1-2-常用数据集"><a href="#2-1-2-常用数据集" class="headerlink" title="2.1.2 常用数据集"></a>2.1.2 常用数据集</h4><p>常用数据集<br>• <strong>PASCAL VOC 2012 Segmentation Competition</strong></p>
 <blockquote>
 <p>VOC2012数据集分为20类，包括背景为21类，分别如下：</p>
@@ -660,7 +660,7 @@
 <li><p>Person Layout Taster Competition</p>
 </li>
 </ol>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091146379-2067668652.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091146379-2067668652.png"></p>
 <p>​    </p>
 </blockquote>
 <p>• <strong>COCO 2018 Stuff Segmentation Task</strong></p>
@@ -673,7 +673,7 @@
 <li><p>目前为止有语义分割的最大数据集，提供的类别有 80 类，有超过 33 万张图片，其中 20 万张有标注，<br>整个数据集中个体的数目超过 150 万个。</p>
 </li>
 <li><p>官网：<a target="_blank" rel="noopener" href="http://cocodataset.org/">http://cocodataset.org/</a></p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091517230-248704637.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091517230-248704637.png"></p>
 </li>
 </ul>
 </blockquote>
@@ -681,20 +681,20 @@
 <blockquote>
 <p>URL:<a target="_blank" rel="noopener" href="https://bair.berkeley.edu/blog/2018/05/30/bdd/">https://bair.berkeley.edu/blog/2018/05/30/bdd/</a></p>
 <p>2018年5月伯克利大学AI实验室（BAIR）发布了目前最大规模、内容最具多样性的公开驾驶数据集BDD100K，同时设计了一个图片标注系统。<br>BDD100K 数据集包含10万段高清视频，每个视频约40秒，720p，30 fps 。每个视频的第10秒对关键帧进行采样，得到10万张图片（图片尺寸：1280720 ），并进行标注。</p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091547171-1846849121.png"></p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091612840-661000243.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091547171-1846849121.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091612840-661000243.png"></p>
 </blockquote>
 <p>• <strong>Cambridge-driving Labeled Video Database (CamVid)</strong></p>
 <blockquote>
 <p>CamVid是第一个具有目标类别语义标签的视频集合。<br>数据库提供32个ground truth语义标签，将每个像素与语义类别之一相关联。<br>该数据库解决了对实验数据的需求，以定量评估新兴算法。 数据是从驾驶汽车的角度拍摄的。<br>包含戴姆勒在内的三家德国单位联合提供，包含50多个城市的立体视觉数据；像素级标注；提供算法评估接口。</p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091645161-1439752352.png"></p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091709623-1726128362.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091645161-1439752352.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091709623-1726128362.png"></p>
 </blockquote>
 <p>• <strong>Cityscapes Dataset</strong></p>
 <p>• <strong>Mapillary Vistas Dataset</strong></p>
 <p>Mapillary Vistas是世界上最大最多样化的像素精确和特定实例标注的街道级图像公开数据集。</p>
 <blockquote>
-<p> <img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091736510-777967798.png"></p>
+<p> <img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091736510-777967798.png"></p>
 </blockquote>
 <p>• <strong>ApolloScape Scene Parsing</strong></p>
 <blockquote>
@@ -703,14 +703,14 @@
 </li>
 <li><p>Scene Parsing数据集是ApolloScape的一部分，它为高级自动驾驶研究提供了一套工具和数据集。</p>
 </li>
-<li><p>场景解析旨在为图像中的每个像素或点云中的每个点分配类别（语义）标签。<br><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091848426-1798961986.png"></p>
+<li><p>场景解析旨在为图像中的每个像素或点云中的每个点分配类别（语义）标签。<br><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091848426-1798961986.png"></p>
 </li>
 </ul>
 </blockquote>
 <hr>
-<h3 id="2-2-DeepLabv3-语义分割原理"><a href="#2-2-DeepLabv3-语义分割原理" class="headerlink" title="2.2 DeepLabv3+语义分割原理"></a>2.2 DeepLabv3+语义分割原理</h3><h4 id="编码器-解码器-encoder-decoder-结构"><a href="#编码器-解码器-encoder-decoder-结构" class="headerlink" title="编码器/解码器(encoder/decoder)结构"></a>编码器/解码器(encoder/decoder)结构</h4><p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220210085317739-1721115068.png"></p>
-<h4 id="卷积-Convolution-运算"><a href="#卷积-Convolution-运算" class="headerlink" title="卷积(Convolution)运算"></a>卷积(Convolution)运算</h4><p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091910022-1933320757.jpg"></p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091946055-397486053.png"></p>
+<h3 id="2-2-DeepLabv3-语义分割原理"><a href="#2-2-DeepLabv3-语义分割原理" class="headerlink" title="2.2 DeepLabv3+语义分割原理"></a>2.2 DeepLabv3+语义分割原理</h3><h4 id="编码器-解码器-encoder-decoder-结构"><a href="#编码器-解码器-encoder-decoder-结构" class="headerlink" title="编码器/解码器(encoder/decoder)结构"></a>编码器/解码器(encoder/decoder)结构</h4><p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220210085317739-1721115068.png"></p>
+<h4 id="卷积-Convolution-运算"><a href="#卷积-Convolution-运算" class="headerlink" title="卷积(Convolution)运算"></a>卷积(Convolution)运算</h4><p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091910022-1933320757.jpg"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125091946055-397486053.png"></p>
 <p>语义分割网络中引入膨胀卷积</p>
 <ul>
 <li>增大网络的感受野</li>
@@ -721,9 +721,9 @@
 <li>传统卷积通过添加池化层</li>
 <li>膨胀卷积在卷积核中插入零元素，对卷积核上采样，可避免池化层引起的信息损失</li>
 </ul>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125092008024-188984546.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125092008024-188984546.png"></p>
 <p>(a) 在低分辨率输入特征图上使用标准卷积(rate=1)进行稀疏特征提取<br>(b) 在高分辨率输入特征图上利用rate = 2的膨胀卷积进行密集特征提取</p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125092026766-393727078.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125092026766-393727078.png"></p>
 <p><strong>顶行</strong>：在低分辨率输入特征图上使用标准卷积进行稀疏特征提取<br><strong>底行</strong>：在高分辨率输入特征图上利用r<strong>ate = 2的膨胀卷积</strong>进行密集特征提取</p>
 <h4 id="DeepLabv3介绍"><a href="#DeepLabv3介绍" class="headerlink" title="DeepLabv3介绍"></a><strong>DeepLabv3介绍</strong></h4><blockquote>
 <p>Liang-Chieh Chen, George Papandreou, Florian Schroff, Hartwig Adam.<br>Rethinking Atrous Convolution for Semantic Image Segmentation. CVPR, 2017<br><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1706.05587">https://arxiv.org/abs/1706.05587</a></p>
@@ -736,37 +736,37 @@
 </ul>
 <hr>
 <p><strong>获取多尺度上下文的架构比较</strong></p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125092048098-323509928.jpg"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125092048098-323509928.jpg"></p>
 <p>(a) <strong>图像金字塔</strong>(如SIFT)<br>(b) <strong>编码-解码框架</strong><br>(c) <strong>采用不同尺度的膨胀卷积</strong><br>(d) <strong>空间金字塔池化</strong><br><strong>空间金字塔池化</strong>：使得任意大小的特征图利用多尺度特征提取都能够转换成固定大小的特征向量</p>
 <hr>
 <p><strong>采用级联模块和带孔卷积提取多尺度信息</strong></p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125092105500-676373412.jpg"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125092105500-676373412.jpg"></p>
 <ul>
 <li>(a) 传统卷积，随着深度增大，特征图尺寸减小</li>
 <li>(b) 采用带孔卷积，可避免特征图尺寸缩小</li>
 <li>output stride: the ratio of input image spatial resolution to the final output resolution<br>(before global pooling or fully connected layer). </li>
 </ul>
 <p><strong>采用有ASPP的并行模块增加图像级特征</strong></p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125092122091-1610020861.png"></p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125092136851-263084213.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125092122091-1610020861.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220125092136851-263084213.png"></p>
 <hr>
 <h4 id="DeepLab-v3-介绍"><a href="#DeepLab-v3-介绍" class="headerlink" title="DeepLab-v3+介绍"></a>DeepLab-v3+介绍</h4><blockquote>
 <p>Liang-Chieh Chen, Yukun Zhu, George Papandreou, Florian Schroff, Hartwig Adam.<br>Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation. Feb. 2018<br><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1802.02611v1">https://arxiv.org/abs/1802.02611v1</a></p>
 </blockquote>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220124192742218-1577063977.jpg"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220124192742218-1577063977.jpg"></p>
 <p>We improve DeepLabv3, which employs the spatial pyramid pooling module (a),<br>with the encoder-decoder structure (b).</p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126162726454-749811330.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126162726454-749811330.png"></p>
 <ul>
 <li>通过添加一个简单有效的解码器模块来扩展DeepLab-v3，以优化分割结果，尤其是沿着目标边界</li>
 <li>将深度可分离卷积（参考Xception）应用于ASPP和解码器模块，从而产生用于语义分割的更快和更强的<br>编码器 - 解码器网络</li>
 </ul>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126163413800-766313907.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126163413800-766313907.png"></p>
 <p>3×3 Depthwise separable convolution decomposes a standard convolution into<br>(a) a depthwise convolution (applying a single filter for each input channel) and<br>(b) a pointwise convolution (combining the outputs from depthwise convolution across<br>channels).<br>(c) In this work, we explore atrous separable convolution where atrous convolution<br>is adopted in the depthwise convolution, as shown in (c) with rate = 2.</p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220124194413213-1103244284.png"></p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220124194432776-1103929899.png"></p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220124194500613-1240970450.png"></p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220124194521220-697113933.png"></p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220124194536173-179020837.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220124194413213-1103244284.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220124194432776-1103929899.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220124194500613-1240970450.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220124194521220-697113933.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220124194536173-179020837.png"></p>
 <hr>
 <h4 id="DeepLab系列语义分割架构模型比较"><a href="#DeepLab系列语义分割架构模型比较" class="headerlink" title="DeepLab系列语义分割架构模型比较"></a><strong>DeepLab系列语义分割架构模型比较</strong></h4><ul>
 <li>1.DeepLabv1：使用空洞卷积来明确控制在深度卷积神经网络中计算特征响应的分辨率。</li>
@@ -864,11 +864,11 @@ weights&#x2F;best_deeplabv3_mobilenet_voc_os16.pth --save_val_results_to test_re
 <p>标注后生成json文件<br>课程pothole项目案例的数据集为1280*720的图片，136张用于训练，16张用于测试。<br>这里的数据集有5个类别：”car”, “dashedline”, “midlane”, “pothole”, “rightlane”<br>数据集图像文件及标注的json文件放置在~/mydataset目录下</p>
 <h3 id="4-2-标注数据格式转换"><a href="#4-2-标注数据格式转换" class="headerlink" title="4.2 标注数据格式转换"></a>4.2 标注数据格式转换</h3><h4 id="4-2-1-图像标注后的数据转换"><a href="#4-2-1-图像标注后的数据转换" class="headerlink" title="4.2.1 图像标注后的数据转换"></a>4.2.1 图像标注后的数据转换</h4><p>在mydataset路径下执行</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python labelme2voc.py roadscene_train roadscene_train&#x2F;data_dataset_voc --labels labels.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126140912210-62495580.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126140912210-62495580.png"></p>
 <pre class="line-numbers language-none"><code class="language-none">python labelme2voc.py roadscene_val roadscene_val&#x2F;data_dataset_voc --labels labels.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126141148458-21184392.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126141148458-21184392.png"></p>
 <h4 id="4-2-2-项目数据准备"><a href="#4-2-2-项目数据准备" class="headerlink" title="4.2.2 项目数据准备"></a>4.2.2 项目数据准备</h4><p>把转成数据集的目录结构准备成PASCAL VOC目录结构格式。<br>在DeepLabV3Plus-Pytorch/datasets/data文件夹下，创建目录结构如下：<br>└── VOCdevkit<br> ├── VOC2007<br> ├── ImageSets<br> ├── JPEGImages<br> └── SegmentationClass<br><img src="https://img2022.cnblogs.com/blog/1571518/202201/1571518-20220126141237739-1080909454.png"></p>
-<p>其中：<br>JPEGImages放所有的数据集图片；<br><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126144823489-2027338592.png"><br>SegmentationClass放标注的数据集掩码文件；<br><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126144843966-1914633980.png"><br>ImageSets/Segmentation下存放训练集、验证集、测试集划分文件<br><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126144903307-1379630015.png"><br>train.txt给出了训练集图片文件的列表（不含文件名后缀）<br>val.txt给出了验证集图片文件的列表<br>trainval.txt给出了训练集和验证集图片文件的列表<br>test.txt给出了测试集图片文件的列表<br>课程中train.txt包括136 张图片列表；<br>trainval.txt包括136 张+16张图片列表；<br>val.txt和test.txt内容相同，包括16张图片列表</p>
+<p>其中：<br>JPEGImages放所有的数据集图片；<br><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126144823489-2027338592.png"><br>SegmentationClass放标注的数据集掩码文件；<br><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126144843966-1914633980.png"><br>ImageSets/Segmentation下存放训练集、验证集、测试集划分文件<br><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126144903307-1379630015.png"><br>train.txt给出了训练集图片文件的列表（不含文件名后缀）<br>val.txt给出了验证集图片文件的列表<br>trainval.txt给出了训练集和验证集图片文件的列表<br>test.txt给出了测试集图片文件的列表<br>课程中train.txt包括136 张图片列表；<br>trainval.txt包括136 张+16张图片列表；<br>val.txt和test.txt内容相同，包括16张图片列表</p>
 <hr>
 <h2 id="五、deeplabv3-网络训练和测试"><a href="#五、deeplabv3-网络训练和测试" class="headerlink" title="五、deeplabv3+网络训练和测试"></a>五、deeplabv3+网络训练和测试</h2><h3 id="5-1-网络训练"><a href="#5-1-网络训练" class="headerlink" title="5.1 网络训练"></a>5.1 网络训练</h3><h4 id="5-1-1-安装训练可视化工具visdom"><a href="#5-1-1-安装训练可视化工具visdom" class="headerlink" title="5.1.1 安装训练可视化工具visdom"></a>5.1.1 安装训练可视化工具visdom</h4><p>1）下载static.zip文件到anaconda3/envs/mypytorch/lib/python3.8/site-packages/visdom并解压<br>更正：此处应该为anaconda3/envs/mypytorch/lib/python3.8/site-packages/visdom<br>2）注释掉server.py文件中函数download_scripts_and_run()中的一句<br> #download_scripts()<br>3）启动visdom server</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># Run visdom server 
@@ -884,7 +884,7 @@ python -m visdom.server<span aria-hidden="true" class="line-numbers-rows"><span>
 output_stride 16 --num_classes 6 --total_itrs 1000 --ckpt 
 weights&#x2F;best_deeplabv3_mobilenet_voc_os16.pth<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126143212838-168843706.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126143212838-168843706.png"></p>
 <p><strong>使用deeplabv3plus_resnet50模型</strong></p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python main.py --model deeplabv3plus_resnet50 --enable_vis --vis_port 8097 --
 gpu_id 0 --year 2007 --crop_val --lr 0.01 --crop_size 513 --batch_size 8 --
@@ -899,7 +899,7 @@ save_val_results<span aria-hidden="true" class="line-numbers-rows"><span></span>
 
 <h4 id="6-2-图片测试"><a href="#6-2-图片测试" class="headerlink" title="6.2 图片测试"></a>6.2 图片测试</h4><h5 id="单张图片测试"><a href="#单张图片测试" class="headerlink" title="单张图片测试"></a>单张图片测试</h5><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python predict.py --input datasets&#x2F;data&#x2F;VOCdevkit&#x2F;VOC2007&#x2F;JPEGImages&#x2F;img001.jpg --dataset voc --model deeplabv3plus_mobilenet --ckpt checkpoints&#x2F;best_deeplabv3plus_mobilenet_voc_os16.pth --save_val_results_to test_results1 --crop_size 513<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img src="https://img2022.cnblogs.com/blog/1571518/202201/1571518-20220126144348771-646069007.png"></p>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126144448239-197253023.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126144448239-197253023.png"></p>
 <h5 id="多张图片测试"><a href="#多张图片测试" class="headerlink" title="多张图片测试"></a>多张图片测试</h5><p>如果是jpg图片，修改predict.py中的一句</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">files &#x3D; glob(os.path.join(opts.input, &#39;**&#x2F;*.png&#39;), recursive&#x3D;True)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>为</p>
@@ -916,7 +916,7 @@ test_results2 <span aria-hidden="true" class="line-numbers-rows"><span></span><s
 voc --model deeplabv3plus_resnet50 --ckpt 
 checkpoints&#x2F;best_deeplabv3plus_resnet50_voc_os16.pth --save_val_results_to 
 test_results2 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/blog/blog/2022/01/26/deeplabsv3-xun-lian-zong-jie/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126144552840-1848277601.png"></p>
+<p><img src="/blog/Deeplabsv3-%E8%AE%AD%E7%BB%83%E6%80%BB%E7%BB%93/1571518-20220126144552840-1848277601.png"></p>
 <p>参考材料：<br>[1] 白勇老师课程及课件:<a target="_blank" rel="noopener" href="https://edu.csdn.net/course/detail/36456">https://edu.csdn.net/course/detail/36456</a><br>[2] <a target="_blank" rel="noopener" href="https://paperswithcode.com/method/deeplabv3">https://paperswithcode.com/method/deeplabv3</a><br>[3] Code:<a target="_blank" rel="noopener" href="https://github.com/VainF/DeepLabV3Plus-Pytorch">https://github.com/VainF/DeepLabV3Plus-Pytorch</a></p>
 
                 
